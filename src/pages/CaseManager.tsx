@@ -103,7 +103,7 @@ export default function CaseManager() {
             that <em>bends to your workflow.</em>
           </h1>
           <p className={styles.sub}>
-            Legacy tools like Actimize force compliance teams to bend their workflow to the tool —
+            Legacy case-management tools force compliance teams to bend their workflow to the tool —
             new alert type? <b>edit XML and redeploy.</b> SqAId Case Manager flips the model:
             every alert type, view, and workflow is configured once in the UI by a developer
             persona, then used forever by financial advisors and investigators.
@@ -361,7 +361,7 @@ export default function CaseManager() {
               Why teams switch
             </div>
             <h2 className="section-title">
-              The Actimize alternative — <em>built for configurability.</em>
+              A modern alternative — <em>built for configurability.</em>
             </h2>
           </div>
 
@@ -370,7 +370,7 @@ export default function CaseManager() {
               <thead>
                 <tr>
                   <th>Capability</th>
-                  <th>Legacy (e.g. Actimize)</th>
+                  <th>Legacy case management</th>
                   <th>SqAId Case Manager</th>
                 </tr>
               </thead>
