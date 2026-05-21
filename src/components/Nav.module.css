@@ -47,6 +47,23 @@
   color: var(--t1);
 }
 
+/* mobile-only product sub-items rendered after the main nav links — hidden
+   on desktop, expanded inline on mobile so the dropdown panel isn't needed. */
+.mobileProduct {
+  display: none;
+}
+
+.mobileTag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid var(--bdr-2);
+  color: var(--t3);
+  margin-left: 8px;
+}
+
 .cta {
   font-size: 13px;
   font-weight: 700;
@@ -113,6 +130,37 @@
     padding: 16px var(--gutter-mobile);
     font-size: 14px;
   }
+
+  /* show product sub-items inline on mobile, indent them, and tighten the
+     surrounding spacing so they read as a sub-list under "Products". */
+  .mobileProduct {
+    display: block;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+  .mobileProduct a {
+    padding-left: calc(var(--gutter-mobile) + 16px);
+    color: var(--t1);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mobileProduct a::before {
+    content: "→";
+    color: var(--blue);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  /* the Products trigger (NavProductsMenu wraps it) doesn't itself need a
+     top border — it's already a section header on mobile via the menu's
+     own CSS. */
+  .productsItem {
+    padding-top: 16px;
+  }
+
   .cta {
     display: none;
   }

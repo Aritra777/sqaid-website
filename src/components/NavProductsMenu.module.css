@@ -1,0 +1,206 @@
+.wrap {
+  /* the panel will position itself relative to the fixed <nav>, not this
+     wrapper — keep wrap inline-block so the trigger sits next to siblings. */
+  position: static;
+  display: inline-flex;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--t2);
+  transition: color var(--t-base);
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.trigger:hover,
+.triggerOpen {
+  color: var(--t1);
+}
+
+.caret {
+  font-size: 10px;
+  transition: transform var(--t-base);
+  display: inline-block;
+}
+
+.triggerOpen .caret {
+  transform: rotate(180deg);
+}
+
+/* the panel — fixed beneath the nav, full-width */
+.panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--nav-h);
+  background: rgba(9, 13, 20, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--bdr);
+  border-top: 1px solid var(--bdr);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--t-base), transform var(--t-base),
+    visibility 0s linear var(--t-base);
+  padding: 32px 0 36px;
+  pointer-events: none;
+  z-index: 150;
+}
+
+.panelOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity var(--t-base), transform var(--t-base), visibility 0s linear 0s;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.panelLede {
+  font-size: 13px;
+  color: var(--t3);
+  max-width: 480px;
+  line-height: 1.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--bdr);
+  border: 1px solid var(--bdr);
+}
+
+.card {
+  background: var(--card);
+  padding: 22px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--t-base);
+  height: 100%;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background var(--t-base);
+}
+
+.card:hover {
+  background: var(--card-hover);
+}
+
+.card:hover::after {
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+}
+
+.cardEyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.cardName {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--t1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardTagline {
+  font-size: 13px;
+  color: var(--t3);
+  line-height: 1.6;
+}
+
+.cardArrow {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid var(--bdr-2);
+  color: var(--t3);
+}
+
+.soon .cardName {
+  color: var(--t2);
+}
+
+.soon .cardEyebrow {
+  color: var(--t3);
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  /* on mobile, the dropdown panel is hidden — the mobile drawer lists
+     products inline as regular nav items. */
+  .panel {
+    display: none;
+  }
+  .caret {
+    display: none;
+  }
+  .trigger {
+    display: block;
+    padding: 16px var(--gutter-mobile);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--t3);
+    cursor: default;
+    pointer-events: none;
+    width: 100%;
+    text-align: left;
+  }
+}
