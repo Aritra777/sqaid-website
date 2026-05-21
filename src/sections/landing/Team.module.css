@@ -1,0 +1,125 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--bdr);
+  border: 1px solid var(--bdr);
+}
+
+.card {
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  transition: background var(--t-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background var(--t-base);
+}
+
+.card:hover {
+  background: var(--card-hover);
+}
+
+.card:hover::after {
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+}
+
+.photo {
+  aspect-ratio: 4 / 5;
+  background: var(--ink-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.1);
+}
+
+.photoPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(26, 111, 255, 0.12) 0%,
+    transparent 70%
+  );
+}
+
+.photoGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(26, 111, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 111, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.initials {
+  font-family: var(--font-mono);
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--t3);
+  position: relative;
+  z-index: 1;
+}
+
+.body {
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.005em;
+}
+
+.role {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.bio {
+  font-size: 13px;
+  color: var(--t3);
+  line-height: 1.65;
+  margin-top: 8px;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .photo {
+    aspect-ratio: 16 / 10;
+  }
+}

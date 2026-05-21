@@ -15,6 +15,7 @@ Drop product screenshots and logos here. Vite serves anything in `public/` from 
 | Case Manager — stack | Architecture diagram              | `case-manager-system.png`   |
 | Faro — hero          | Operations dashboard              | `faro-hero.png`             |
 | Faro — verdicts      | Verdict console                   | `faro-verdicts.png`         |
+| Landing — Team       | One headshot per member           | `team-{name-slug}.jpg`      |
 
 To swap a placeholder for a real image, pass `src` to the `<ScreenshotFrame />` instance, e.g.
 

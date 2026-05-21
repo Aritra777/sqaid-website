@@ -43,6 +43,9 @@ export default function Footer() {
               <Link to="/#about">About</Link>
             </li>
             <li>
+              <Link to="/#team">Team</Link>
+            </li>
+            <li>
               <Link to="/#industries">Industries</Link>
             </li>
             <li>
