@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import HexLogo from "./HexLogo";
+import Brand from "./Brand";
 import { COMPANY_EMAIL, PRODUCTS } from "@/lib/nav-data";
 import styles from "./Footer.module.css";
 
@@ -11,7 +11,7 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.col}>
           <div className={styles.brand}>
-            <HexLogo size={22} tone="muted" />
+            <Brand size={24} />
             <span className={styles.brandName}>SqAId</span>
           </div>
           <p className={styles.tagline}>

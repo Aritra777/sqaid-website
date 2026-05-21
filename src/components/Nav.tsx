@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import HexLogo from "./HexLogo";
+import Brand from "./Brand";
 import { TOP_NAV } from "@/lib/nav-data";
 import styles from "./Nav.module.css";
 
@@ -17,7 +17,7 @@ export default function Nav() {
   return (
     <nav className={styles.nav} aria-label="Primary">
       <Link to="/" className={styles.brand} onClick={() => setOpen(false)}>
-        <HexLogo size={30} />
+        <Brand size={30} />
         <span className={styles.brandName}>SqAId</span>
       </Link>
 
