@@ -90,20 +90,27 @@
     background: var(--ink-2);
     border-bottom: 1px solid var(--bdr);
     gap: 0;
-    padding: 0;
+    padding: 12px 0;
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--t-slow);
   }
   .linksOpen {
-    max-height: 400px;
+    max-height: 480px;
   }
   .links li {
     border-top: 1px solid var(--bdr);
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+  .links li:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
   }
   .links a {
     display: block;
-    padding: 18px var(--gutter-mobile);
+    padding: 16px var(--gutter-mobile);
     font-size: 14px;
   }
   .cta {
