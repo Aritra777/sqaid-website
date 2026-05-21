@@ -1,0 +1,43 @@
+.cta {
+  padding: 150px 0;
+  text-align: center;
+  background: radial-gradient(
+    ellipse 60% 70% at 50% 100%,
+    rgba(26, 111, 255, 0.13) 0%,
+    transparent 70%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.h {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--t1);
+  line-height: 1.1;
+  margin-bottom: 22px;
+}
+
+.h em {
+  font-style: normal;
+  background: linear-gradient(130deg, var(--blue), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.p {
+  font-size: 18px;
+  color: var(--t2);
+  max-width: 520px;
+  margin: 0 auto 44px;
+  line-height: 1.75;
+}
+
+.btnRow {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
