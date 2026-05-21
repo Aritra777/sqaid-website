@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ScreenshotFrame from "@/components/ScreenshotFrame";
 import { COMPANY_EMAIL } from "@/lib/nav-data";
+import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./CaseManager.module.css";
 
 type Stat = { value: string; unit?: string; label: string };
@@ -85,6 +86,7 @@ const STACK = [
 ];
 
 export default function CaseManager() {
+  useDocumentTitle("Case Manager · Configurable case management");
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}

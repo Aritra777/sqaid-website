@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { COMPANY_EMAIL } from "@/lib/nav-data";
+import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./Sentinel.module.css";
 
 const META = [
@@ -9,6 +10,7 @@ const META = [
 ];
 
 export default function Sentinel() {
+  useDocumentTitle("Sentinel · Coming soon");
   return (
     <section className={styles.shell}>
       <div className={styles.grid} aria-hidden="true" />

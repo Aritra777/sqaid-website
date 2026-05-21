@@ -6,8 +6,10 @@ import Process from "@/sections/landing/Process";
 import Industries from "@/sections/landing/Industries";
 import About from "@/sections/landing/About";
 import Contact from "@/sections/landing/Contact";
+import { useDocumentTitle } from "@/lib/use-document-title";
 
 export default function Landing() {
+  useDocumentTitle("AI-Native Risk & Compliance Intelligence");
   return (
     <>
       <Hero />

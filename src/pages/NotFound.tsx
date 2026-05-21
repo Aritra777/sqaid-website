@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useDocumentTitle } from "@/lib/use-document-title";
 
 export default function NotFound() {
+  useDocumentTitle("Page not found");
   return (
     <section className="section section--center">
       <div className="container">

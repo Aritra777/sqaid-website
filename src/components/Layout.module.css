@@ -8,3 +8,27 @@
   padding-top: var(--nav-h);
   flex: 1 0 auto;
 }
+
+.main:focus {
+  outline: none;
+}
+
+.skipLink {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(-150%);
+  z-index: 999;
+  background: var(--blue);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  transition: transform var(--t-base);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}

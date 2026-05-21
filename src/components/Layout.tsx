@@ -20,8 +20,11 @@ export default function Layout() {
 
   return (
     <div className={styles.shell}>
+      <a href="#main" className={styles.skipLink}>
+        Skip to main content
+      </a>
       <Nav />
-      <main id="main" className={styles.main}>
+      <main id="main" className={styles.main} tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />

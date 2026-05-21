@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ScreenshotFrame from "@/components/ScreenshotFrame";
 import Terminal, { T } from "@/components/Terminal";
 import { COMPANY_EMAIL } from "@/lib/nav-data";
+import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./Faro.module.css";
 
 type Stat = { value: string; unit?: string; label: string };
@@ -70,6 +71,7 @@ const LANES: Lane[] = [
 ];
 
 export default function Faro() {
+  useDocumentTitle("Faro · Real-time fraud & AML platform");
   return (
     <>
       {/* ── HERO ─────────────────────────────────────── */}
