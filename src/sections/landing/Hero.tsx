@@ -33,8 +33,8 @@ export default function Hero() {
           <Link to="/#contact" className="btn btn--primary">
             Request a Demo &nbsp;→
           </Link>
-          <Link to="/#products" className="btn btn--ghost">
-            Explore Products
+          <Link to="/#solution" className="btn btn--ghost">
+            See the Platform
           </Link>
         </div>
 

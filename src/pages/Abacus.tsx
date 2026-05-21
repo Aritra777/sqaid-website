@@ -60,8 +60,8 @@ export default function Abacus() {
           >
             Notify me &nbsp;→
           </a>
-          <Link to="/#products" className="btn btn--ghost">
-            Explore the other products
+          <Link to="/#solution" className="btn btn--ghost">
+            See the Platform
           </Link>
         </div>
 

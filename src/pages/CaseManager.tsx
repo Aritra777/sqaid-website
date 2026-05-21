@@ -449,8 +449,8 @@ export default function CaseManager() {
             >
               Request a Demo &nbsp;→
             </a>
-            <Link to="/#products" className="btn btn--ghost">
-              Compare Products
+            <Link to="/#solution" className="btn btn--ghost">
+              See the Platform
             </Link>
           </div>
         </div>

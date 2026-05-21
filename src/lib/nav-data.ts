@@ -34,7 +34,7 @@ export const PRODUCTS: ProductLink[] = [
 
 export const TOP_NAV = [
   { to: "/#solution", label: "Platform" },
-  { to: "/#products", label: "Products" },
+  { to: "/products", label: "Products" },
   { to: "/#industries", label: "Industries" },
   { to: "/#about", label: "About" },
 ] as const;
