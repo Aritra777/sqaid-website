@@ -42,7 +42,7 @@ src/
 - `/products/argus` — Argus (financial-crime intelligence)
 - `/products/case-manager` — Case Manager
 - `/products/faro` — Faro (fraud + AML microservices)
-- `/products/sentinel` — Fourth product (Coming soon)
+- `/products/abacus` — Fourth product (Coming soon)
 
 ## Image placeholders
 

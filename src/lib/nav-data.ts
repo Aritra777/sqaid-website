@@ -25,8 +25,8 @@ export const PRODUCTS: ProductLink[] = [
     status: "live",
   },
   {
-    slug: "sentinel",
-    name: "Sentinel",
+    slug: "abacus",
+    name: "Abacus",
     tagline: "Coming soon",
     status: "soon",
   },

@@ -6,7 +6,7 @@ const Landing = lazy(() => import("@/pages/Landing"));
 const Argus = lazy(() => import("@/pages/Argus"));
 const CaseManager = lazy(() => import("@/pages/CaseManager"));
 const Faro = lazy(() => import("@/pages/Faro"));
-const Sentinel = lazy(() => import("@/pages/Sentinel"));
+const Abacus = lazy(() => import("@/pages/Abacus"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function RouteFallback() {
@@ -36,7 +36,7 @@ export default function App() {
           <Route path="/products/argus" element={<Argus />} />
           <Route path="/products/case-manager" element={<CaseManager />} />
           <Route path="/products/faro" element={<Faro />} />
-          <Route path="/products/sentinel" element={<Sentinel />} />
+          <Route path="/products/abacus" element={<Abacus />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

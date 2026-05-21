@@ -30,7 +30,7 @@ const PRODUCT_DETAILS: Record<
       "13+ pluggable services",
     ],
   },
-  sentinel: {
+  abacus: {
     eyebrow: "Coming soon",
     bullets: ["In development", "Stay tuned"],
   },

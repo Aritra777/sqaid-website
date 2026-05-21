@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import Brand from "@/components/Brand";
 import { COMPANY_EMAIL } from "@/lib/nav-data";
 import { useDocumentTitle } from "@/lib/use-document-title";
-import styles from "./Sentinel.module.css";
+import styles from "./Abacus.module.css";
 
 const META = [
   { label: "Status", value: "In active development" },
@@ -9,8 +10,8 @@ const META = [
   { label: "Updates", value: `Email ${COMPANY_EMAIL} to be notified` },
 ];
 
-export default function Sentinel() {
-  useDocumentTitle("Sentinel · Coming soon");
+export default function Abacus() {
+  useDocumentTitle("Abacus · Coming soon");
   return (
     <section className={styles.shell}>
       <div className={styles.grid} aria-hidden="true" />
@@ -18,14 +19,14 @@ export default function Sentinel() {
         <div className={styles.logoStack}>
           <span className={styles.ring} aria-hidden="true" />
           <span className={styles.ring2} aria-hidden="true" />
-          <div className={styles.hexWrap}>
-            <div className={styles.hexBig} aria-hidden="true" />
+          <div className={styles.markWrap}>
+            <Brand size={88} />
           </div>
         </div>
 
         <div className="eyebrow" style={{ justifyContent: "center", display: "inline-flex" }}>
           <span className="eyebrow-dot" />
-          Coming soon · Sentinel
+          Coming soon · Abacus
         </div>
 
         <h1 className={styles.h1}>
@@ -35,7 +36,7 @@ export default function Sentinel() {
         </h1>
 
         <p className={styles.lede}>
-          Sentinel is the next product in the SqAId family — a focused complement to Argus, Case
+          Abacus is the next product in the SqAId family — a focused complement to Argus, Case
           Manager, and Faro. We&apos;re finalising the details. If you&apos;d like an early look
           when it lands, drop us a note.
         </p>
@@ -54,7 +55,7 @@ export default function Sentinel() {
 
         <div className={styles.cta}>
           <a
-            href={`mailto:${COMPANY_EMAIL}?subject=Sentinel%20early%20access`}
+            href={`mailto:${COMPANY_EMAIL}?subject=Abacus%20early%20access`}
             className="btn btn--primary"
           >
             Notify me &nbsp;→
