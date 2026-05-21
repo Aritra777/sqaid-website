@@ -1,0 +1,65 @@
+/* Design tokens lifted from the Argus product surface so every page reads as
+   one continuous product family. Edit here, not in component styles. */
+:root {
+  /* ── surfaces ── */
+  --ink: #05080d;
+  --ink-2: #090d14;
+  --panel: #0d1219;
+  --card: #111822;
+  --card-hover: #151f2d;
+
+  /* ── borders / dividers ── */
+  --bdr: #1c2a3a;
+  --bdr-2: #243040;
+
+  /* ── brand & accents ── */
+  --blue: #1a6fff;
+  --blue-deep: #0f3d99;
+  --blue-press: #0d57d4;
+  --cyan: #00c4f5;
+  --green: #00e07a;
+  --red: #ff3347;
+  --amber: #ffb020;
+  --purple: #8b5cf6;
+
+  /* ── type colors ── */
+  --t1: #f0f4f8;
+  --t2: #8ca0b5;
+  --t3: #445566;
+
+  /* ── typography ── */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
+
+  /* ── spacing scale ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 130px;
+
+  /* ── layout ── */
+  --container: 1200px;
+  --gutter: 52px;
+  --gutter-mobile: 24px;
+  --nav-h: 64px;
+
+  /* ── motion ── */
+  --t-fast: 0.15s ease;
+  --t-base: 0.2s ease;
+  --t-slow: 0.35s ease;
+
+  /* ── radius (Argus is mostly sharp; subtle radius only where useful) ── */
+  --r-1: 2px;
+  --r-2: 4px;
+  --r-pill: 999px;
+
+  /* ── shadow ── */
+  --shadow-frame: 0 0 0 1px rgba(26, 111, 255, 0.12), 0 40px 100px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(26, 111, 255, 0.06);
+}
