@@ -66,22 +66,6 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-}
-
-.panelHeader {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.panelLede {
-  font-size: 13px;
-  color: var(--t3);
-  max-width: 480px;
-  line-height: 1.65;
 }
 
 .grid {

@@ -96,16 +96,6 @@ export default function NavProductsMenu({ onSelect }: Props) {
         onMouseLeave={scheduleClose}
       >
         <div className={`container ${styles.inner}`}>
-          <div className={styles.panelHeader}>
-            <span className="eyebrow" style={{ marginBottom: 0 }}>
-              <span className="eyebrow-dot" />
-              The SqAId platform
-            </span>
-            <p className={styles.panelLede}>
-              Four products. One design system. Each owns a piece of the compliance lifecycle.
-            </p>
-          </div>
-
           <ul className={styles.grid}>
             {PRODUCTS.map((p) => {
               const detail = DETAILS[p.slug] ?? { eyebrow: "" };
