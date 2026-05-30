@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import ScreenshotFrame from "@/components/ScreenshotFrame";
+import Reveal from "@/components/Reveal";
+import { useTilt } from "@/lib/use-tilt";
 import { COMPANY_EMAIL } from "@/lib/nav-data";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./CaseManager.module.css";
@@ -87,28 +88,35 @@ const STACK = [
 
 export default function CaseManager() {
   useDocumentTitle("Case Manager · Configurable case management");
+  const tilt = useTilt({ max: 5 });
+
   return (
-    <>
+    <div className="theme-case-manager">
       {/* ── HERO ─────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroGrid} aria-hidden="true" />
+        <div className={styles.heroGlow} aria-hidden="true" />
+
         <div className={`container ${styles.heroInner}`}>
-          <div className="eyebrow">
+          <Reveal className="eyebrow">
             <span className="eyebrow-dot" />
             Case Manager · Configurable case management
-          </div>
-          <h1 className={styles.h1}>
+          </Reveal>
+
+          <Reveal as="h1" className={styles.h1} delay={60}>
             The case-management platform
             <br />
             that <em>bends to your workflow.</em>
-          </h1>
-          <p className={styles.sub}>
+          </Reveal>
+
+          <Reveal as="p" className={styles.sub} delay={120}>
             Legacy case-management tools force compliance teams to bend their workflow to the tool —
             new alert type? <b>edit XML and redeploy.</b> SqAId Case Manager flips the model:
             every alert type, view, and workflow is configured once in the UI by a developer
             persona, then used forever by financial advisors and investigators.
-          </p>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          </Reveal>
+
+          <Reveal className={styles.heroCtas} delay={180}>
             <a
               href={`mailto:${COMPANY_EMAIL}?subject=Case%20Manager%20demo`}
               className="btn btn--primary"
@@ -118,58 +126,79 @@ export default function CaseManager() {
             <a href="#features" className="btn btn--ghost">
               See the Features
             </a>
-          </div>
+          </Reveal>
+        </div>
+
+        {/* floating product shot with pointer tilt */}
+        <div className={`container ${styles.heroStageWrap}`}>
+          <Reveal delay={240}>
+            <div className={styles.heroStage}>
+              <div
+                ref={tilt.ref}
+                className={styles.heroCard}
+                onPointerMove={tilt.onMove}
+                onPointerLeave={tilt.onLeave}
+              >
+                <div className={styles.heroChrome} aria-hidden="true">
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroUrl}>app.sqaid.ai / case-manager</span>
+                  <span className={styles.heroBadge}>● Live</span>
+                </div>
+                <img
+                  className={styles.heroShot}
+                  src="/assets/cais-manager.png"
+                  alt="Case Manager — alert analytics & case workspace"
+                  width={3020}
+                  height={1630}
+                />
+                <div className={styles.heroGlare} aria-hidden="true" />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* stats */}
+        <div className="container">
           <ul className={styles.heroStats}>
-            {HERO_STATS.map((s) => (
-              <li key={s.label} className={styles.hStat}>
+            {HERO_STATS.map((s, i) => (
+              <Reveal as="li" key={s.label} className={styles.hStat} delay={300 + i * 70}>
                 <div className={styles.hStatVal}>
                   {s.value}
                   {s.unit && <span>{s.unit}</span>}
                 </div>
                 <div className={styles.hStatLabel}>{s.label}</div>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* ── SCREENSHOT ───────────────────────────────── */}
-      <section style={{ paddingBottom: "var(--space-10)" }}>
-        <div className="container">
-          <ScreenshotFrame
-            label="Alert summary — Case Manager"
-            url="app.sqaid.ai / case-manager / alert / 4451"
-            badge="Live"
-            aspect="16 / 9"
-            caption="Case Manager alert summary"
-          />
-        </div>
-      </section>
-
-      {/* ── FEATURES ─────────────────────────────────── */}
+      {/* ── FEATURES (bento) ─────────────────────────── */}
       <section id="features" className="section section--alt">
         <div className="container">
           <div className="section--center" style={{ marginBottom: 0 }}>
-            <div className="eyebrow">
+            <Reveal className="eyebrow">
               <span className="eyebrow-dot" />
               What makes it different
-            </div>
-            <h2 className="section-title">
+            </Reveal>
+            <Reveal as="h2" className="section-title" delay={60}>
               Configuration is <em>not a developer ticket.</em>
-            </h2>
-            <p className="section-lede">
+            </Reveal>
+            <Reveal as="p" className="section-lede" delay={120}>
               Six surfaces. All configured in the UI. No XML, no redeploys, no engineering tickets
               for routine compliance changes.
-            </p>
+            </Reveal>
           </div>
 
-          <div className={styles.features}>
-            {FEATURES.map((f) => (
-              <article key={f.title} className={styles.feature}>
+          <div className={styles.bento}>
+            {FEATURES.map((f, i) => (
+              <Reveal key={f.title} className={styles.feature} delay={i * 80}>
                 <div className={styles.featTag}>{f.tag}</div>
                 <h3 className={styles.featTitle}>{f.title}</h3>
                 <p className={styles.featBody}>{f.body}</p>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -179,7 +208,7 @@ export default function CaseManager() {
       <section className="section">
         <div className="container">
           <div className="two-col">
-            <div className="two-col__a">
+            <Reveal className="two-col__a">
               <div className="eyebrow">
                 <span className="eyebrow-dot" />
                 Page &amp; section designer
@@ -197,41 +226,38 @@ export default function CaseManager() {
                 setup, not a daily activity. Once configured, an FA opens the alert and sees
                 exactly the right slice of the data model for that alert type.
               </p>
-              <ul className="checklist">
-                <li>
-                  <span>
-                    <b>Component palette</b> — trades, positions, prior alerts, FA profile, issue
-                    history
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Per alert type</b> — different views for AML, fraud, sanctions, trade
-                    surveillance
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Bound to extra fields</b> — designer reads the alert-type schema so
-                    components only show fields that exist
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Built in-house</b> — no Retool dependency, no vendor lock-in on the
-                    designer surface itself
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div className="two-col__b">
-              <ScreenshotFrame
-                label="Page designer"
-                url="app.sqaid.ai / case-manager / designer"
-                aspect="4 / 3"
-                caption="Page designer canvas"
-              />
-            </div>
+            </Reveal>
+            <Reveal className="two-col__b" delay={120}>
+              <div className={styles.specCard}>
+                <div className={styles.specCardLabel}>Designer surface</div>
+                <ul className="checklist">
+                  <li>
+                    <span>
+                      <b>Component palette</b> — trades, positions, prior alerts, FA profile, issue
+                      history
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Per alert type</b> — different views for AML, fraud, sanctions, trade
+                      surveillance
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Bound to extra fields</b> — designer reads the alert-type schema so
+                      components only show fields that exist
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Built in-house</b> — no Retool dependency, no vendor lock-in on the
+                      designer surface itself
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -240,15 +266,36 @@ export default function CaseManager() {
       <section className="section section--alt">
         <div className="container">
           <div className="two-col two-col--flip">
-            <div className="two-col__a">
-              <ScreenshotFrame
-                label="Workflow designer"
-                url="app.sqaid.ai / case-manager / workflow"
-                aspect="4 / 3"
-                caption="React Flow-style workflow canvas"
-              />
-            </div>
-            <div className="two-col__b">
+            <Reveal className="two-col__a">
+              <div className={styles.specCard}>
+                <div className={styles.specCardLabel}>Workflow engine</div>
+                <ul className="checklist">
+                  <li>
+                    <span>
+                      <b>Visual canvas</b> built on React Flow — drag steps, connect, and save
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>One workflow per alert type</b> — versioned and audit-tracked
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Action library</b> — assign, attach, add note, audit history, export,
+                      close, escalate
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Server-side enforcement</b> — the UI is informed by the workflow, not the
+                      other way around
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal className="two-col__b" delay={120}>
               <div className="eyebrow">
                 <span className="eyebrow-dot" />
                 Workflow designer
@@ -264,31 +311,7 @@ export default function CaseManager() {
                 with a specific alert type. The backend enforces the steps, so an alert can only
                 progress in the order you designed.
               </p>
-              <ul className="checklist">
-                <li>
-                  <span>
-                    <b>Visual canvas</b> built on React Flow — drag steps, connect, and save
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>One workflow per alert type</b> — versioned and audit-tracked
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Action library</b> — assign, attach, add note, audit history, export,
-                    close, escalate
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Server-side enforcement</b> — the UI is informed by the workflow, not the
-                    other way around
-                  </span>
-                </li>
-              </ul>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -297,7 +320,7 @@ export default function CaseManager() {
       <section className="section">
         <div className="container">
           <div className="two-col">
-            <div className="two-col__a">
+            <Reveal className="two-col__a">
               <div className="eyebrow">
                 <span className="eyebrow-dot" />
                 Role-based access control
@@ -316,38 +339,35 @@ export default function CaseManager() {
                 the UI doesn&apos;t hit the auth service on every render — but cache invalidation
                 is server-driven, so revoking a role takes effect on the next request.
               </p>
-              <ul className="checklist">
-                <li>
-                  <span>
-                    <b>Authorization wrapper</b> with nested checks for pages and actions
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Role caching</b> — union of policies cached per user for fast retrieval
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>Conditional authorization</b> — &ldquo;allow this if &lt;predicate&gt;&rdquo;
-                  </span>
-                </li>
-                <li>
-                  <span>
-                    <b>In-house build</b> — we evaluated CERBOS but kept the system internal to
-                    avoid vendor lock-in
-                  </span>
-                </li>
-              </ul>
-            </div>
-            <div className="two-col__b">
-              <ScreenshotFrame
-                label="RBAC policy editor"
-                url="app.sqaid.ai / case-manager / rbac"
-                aspect="4 / 3"
-                caption="Policy editor"
-              />
-            </div>
+            </Reveal>
+            <Reveal className="two-col__b" delay={120}>
+              <div className={styles.specCard}>
+                <div className={styles.specCardLabel}>Access control</div>
+                <ul className="checklist">
+                  <li>
+                    <span>
+                      <b>Authorization wrapper</b> with nested checks for pages and actions
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Role caching</b> — union of policies cached per user for fast retrieval
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>Conditional authorization</b> — &ldquo;allow this if &lt;predicate&gt;&rdquo;
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <b>In-house build</b> — we evaluated CERBOS but kept the system internal to
+                      avoid vendor lock-in
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -356,105 +376,98 @@ export default function CaseManager() {
       <section className="section section--alt">
         <div className="container">
           <div className="section--center" style={{ marginBottom: 0 }}>
-            <div className="eyebrow">
+            <Reveal className="eyebrow">
               <span className="eyebrow-dot" />
               Why teams switch
-            </div>
-            <h2 className="section-title">
+            </Reveal>
+            <Reveal as="h2" className="section-title" delay={60}>
               A modern alternative — <em>built for configurability.</em>
-            </h2>
+            </Reveal>
           </div>
 
-          <div className={styles.cmpWrap}>
-            <table className={styles.cmpTable}>
-              <thead>
-                <tr>
-                  <th>Capability</th>
-                  <th>Legacy case management</th>
-                  <th>SqAId Case Manager</th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON.map((r) => (
-                  <tr key={r.capability}>
-                    <td>{r.capability}</td>
-                    <td className={styles.bad}>{r.legacy}</td>
-                    <td className={styles.good}>{r.sqaid}</td>
+          <Reveal className={styles.cmpWrap}>
+            <div className={styles.cmpScroll}>
+              <table className={styles.cmpTable}>
+                <thead>
+                  <tr>
+                    <th>Capability</th>
+                    <th>Legacy case management</th>
+                    <th>SqAId Case Manager</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {COMPARISON.map((r) => (
+                    <tr key={r.capability}>
+                      <td>{r.capability}</td>
+                      <td className={styles.bad}>{r.legacy}</td>
+                      <td className={styles.good}>{r.sqaid}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── STACK ─────────────────────────────────────── */}
-      <section className="section">
+      <section className="section section--center">
         <div className="container">
-          <div className="two-col">
-            <div className="two-col__a">
-              <div className="eyebrow">
-                <span className="eyebrow-dot" />
-                Under the hood
-              </div>
-              <h2 className="section-title">
-                Open stack. <em>No vendor lock-in.</em>
-              </h2>
-              <p className="section-lede">
-                Built on the technologies your platform team already runs. PostgreSQL for the
-                relational core, MongoDB where flexible schemas earn their keep, Spring Boot
-                services on AWS — and React on the frontend so your team can extend it.
-              </p>
-              <div className={styles.stack}>
-                {STACK.map((s) => (
-                  <span key={s.name} className={styles.stackBadge}>
-                    <strong>{s.name}</strong>
-                    <span>· {s.note}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="two-col__b">
-              <ScreenshotFrame
-                label="Architecture overview"
-                url="app.sqaid.ai / case-manager / system"
-                aspect="4 / 3"
-                caption="Case Manager system diagram"
-              />
-            </div>
-          </div>
+          <Reveal className="eyebrow" style={{ justifyContent: "center" }}>
+            <span className="eyebrow-dot" />
+            Under the hood
+          </Reveal>
+          <Reveal as="h2" className="section-title" delay={60}>
+            Open stack. <em>No vendor lock-in.</em>
+          </Reveal>
+          <Reveal as="p" className="section-lede" delay={120}>
+            Built on the technologies your platform team already runs. PostgreSQL for the
+            relational core, MongoDB where flexible schemas earn their keep, Spring Boot services
+            on AWS — and React on the frontend so your team can extend it.
+          </Reveal>
+          <Reveal className={styles.stack} delay={160}>
+            {STACK.map((s) => (
+              <span key={s.name} className={styles.stackBadge}>
+                <strong>{s.name}</strong>
+                <span>· {s.note}</span>
+              </span>
+            ))}
+          </Reveal>
         </div>
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="section section--center">
+      <section className="section">
         <div className="container">
-          <div className="eyebrow">
-            <span className="eyebrow-dot" />
-            Get started
-          </div>
-          <h2 className="section-title">
-            Stop redeploying for every alert type.
-            <br />
-            <em>Configure it instead.</em>
-          </h2>
-          <p className="section-lede" style={{ marginBottom: 32 }}>
-            We&apos;ll show you Case Manager on your alert types, your workflow, and your
-            permission model — in twenty minutes.
-          </p>
-          <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <a
-              href={`mailto:${COMPANY_EMAIL}?subject=Case%20Manager%20demo`}
-              className="btn btn--primary"
-            >
-              Request a Demo &nbsp;→
-            </a>
-            <Link to="/#solution" className="btn btn--ghost">
-              See the Platform
-            </Link>
-          </div>
+          <Reveal className={styles.cta}>
+            <div className={styles.ctaGlow} aria-hidden="true" />
+            <div className="eyebrow" style={{ justifyContent: "center" }}>
+              <span className="eyebrow-dot" />
+              Get started
+            </div>
+            <h2 className="section-title">
+              Stop redeploying for every alert type.
+              <br />
+              <em>Configure it instead.</em>
+            </h2>
+            <p className="section-lede" style={{ marginBottom: 32 }}>
+              We&apos;ll show you Case Manager on your alert types, your workflow, and your
+              permission model — in twenty minutes.
+            </p>
+            <div className={styles.ctaButtons}>
+              <a
+                href={`mailto:${COMPANY_EMAIL}?subject=Case%20Manager%20demo`}
+                className="btn btn--primary"
+              >
+                Request a Demo &nbsp;→
+              </a>
+              <Link to="/#solution" className="btn btn--ghost">
+                See the Platform
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }
