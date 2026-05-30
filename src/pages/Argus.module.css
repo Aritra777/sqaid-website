@@ -1,40 +1,58 @@
-/* ── hero ── */
+/* ─────────────────────────────────────────────────────────
+   Argus — Apple-style product page (dark · emerald theme).
+   Colors come ONLY from the accent tokens (themed via .theme-argus);
+   neutral black/white alphas are used purely for glass/shadow depth.
+   ───────────────────────────────────────────────────────── */
+
+/* ── HERO ─────────────────────────────────────────────── */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 100px 0 60px;
-  background: radial-gradient(
-    ellipse 80% 50% at 50% -10%,
-    rgba(26, 111, 255, 0.14) 0%,
-    transparent 70%
-  );
+  padding: 120px 0 72px;
+  text-align: center;
 }
 
 .heroGrid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(26, 111, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 111, 255, 0.035) 1px, transparent 1px);
+  background-image: linear-gradient(var(--accent-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--accent-grid) 1px, transparent 1px);
   background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 0%, transparent 75%);
+  pointer-events: none;
+}
+
+.heroGlow {
+  position: absolute;
+  top: -340px;
+  left: 50%;
+  width: 1100px;
+  height: 760px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 60%);
+  filter: blur(8px);
   pointer-events: none;
 }
 
 .heroInner {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .h1 {
-  font-size: clamp(46px, 6.5vw, 78px);
+  font-size: clamp(44px, 6.4vw, 82px);
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-  margin-bottom: 28px;
-  max-width: 920px;
+  letter-spacing: -0.04em;
+  line-height: 1.03;
+  margin: 14px 0 26px;
+  max-width: 16ch;
 }
 
 .h1 em {
   font-style: normal;
-  background: linear-gradient(130deg, var(--blue), var(--cyan));
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -43,9 +61,9 @@
 .sub {
   font-size: 19px;
   color: var(--t2);
-  max-width: 620px;
+  max-width: 640px;
   line-height: 1.75;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
 }
 
 .sub b {
@@ -53,12 +71,107 @@
   font-weight: 600;
 }
 
+.heroCtas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* floating product shot */
+.heroStageWrap {
+  margin-top: 72px;
+}
+
+.heroStage {
+  perspective: 1600px;
+}
+
+.heroCard {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--bdr-2);
+  box-shadow: var(--shadow-card);
+  transform: perspective(1600px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))
+    scale(var(--tilt-scale, 1));
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow var(--t-slow);
+  will-change: transform;
+}
+
+.heroCard:hover {
+  box-shadow: var(--shadow-card-strong);
+}
+
+.heroChrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--bdr);
+}
+
+.heroDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bdr-2);
+}
+
+.heroUrl {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--t3);
+}
+
+.heroBadge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+}
+
+.heroShot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.heroGlare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.1),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+.heroCard:hover .heroGlare {
+  opacity: 1;
+}
+
+/* stats */
 .heroStats {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--bdr);
   border-bottom: 1px solid var(--bdr);
-  margin-top: 72px;
+  margin-top: 80px;
+  text-align: left;
 }
 
 .hStat {
@@ -69,20 +182,19 @@
 .hStat:first-child {
   padding-left: 0;
 }
-
 .hStat:last-child {
   border-right: none;
 }
 
 .hStatVal {
-  font-size: 34px;
+  font-size: 28px;
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .hStatVal span {
-  color: var(--blue);
+  color: var(--accent);
   font-size: 22px;
 }
 
@@ -96,296 +208,184 @@
   line-height: 1.5;
 }
 
-/* ── screenshot section ── */
-.screenshotSection {
-  padding: 0 0 var(--space-10);
-}
-
-/* ── agents grid ── */
-.agents {
+/* ── CAPABILITIES (bento) ─────────────────────────────── */
+.bento {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--bdr);
-  border: 1px solid var(--bdr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
   margin-top: 56px;
 }
 
-.agent {
-  background: var(--card);
-  padding: 32px 28px;
+.capability {
+  grid-column: span 3;
   position: relative;
   overflow: hidden;
-  transition: background var(--t-base);
+  background: var(--card);
+  border: 1px solid var(--bdr);
+  border-radius: 20px;
+  padding: 38px 36px 42px;
+  transition: transform var(--t-base), border-color var(--t-base), background var(--t-base),
+    box-shadow var(--t-base);
 }
 
-.agent::after {
+.capability:nth-child(1) {
+  grid-column: span 4;
+}
+.capability:nth-child(2) {
+  grid-column: span 2;
+}
+.capability:nth-child(3) {
+  grid-column: span 2;
+}
+.capability:nth-child(4) {
+  grid-column: span 4;
+}
+
+.capability::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: transparent;
-  transition: background var(--t-base);
+  inset: 0;
+  background: radial-gradient(600px circle at 100% 0%, var(--accent-soft), transparent 40%);
+  opacity: 0;
+  transition: opacity var(--t-slow);
+  pointer-events: none;
 }
 
-.agent:hover {
+.capability:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-border);
   background: var(--card-hover);
-}
-.agent:hover::after {
-  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  box-shadow: var(--shadow-hover);
 }
 
-.agentType {
+.capability:hover::before {
+  opacity: 1;
+}
+
+.capTag {
   display: inline-block;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--blue);
-  background: rgba(26, 111, 255, 0.08);
-  border: 1px solid rgba(26, 111, 255, 0.2);
-  padding: 3px 9px;
-  margin-bottom: 14px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--r-pill);
+  padding: 4px 12px;
+  margin-bottom: 16px;
+}
+
+.capTitle {
+  position: relative;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--t1);
+  margin-bottom: 12px;
+}
+
+.capBody {
+  position: relative;
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+/* ── THE CREW (agent grid) ────────────────────────────── */
+.crew {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.agent {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--bdr);
+  border-radius: 16px;
+  padding: 24px 22px 26px;
+  transition: transform var(--t-base), border-color var(--t-base), background var(--t-base),
+    box-shadow var(--t-base);
+}
+
+.agent:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-border);
+  background: var(--card-hover);
+  box-shadow: var(--shadow-hover);
+}
+
+.agentNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 12px;
 }
 
 .agentName {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--t1);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-.agentDesc {
-  font-size: 14px;
-  color: var(--t3);
-  line-height: 1.7;
-}
-
-/* ── comparison table ── */
-.cmpWrap {
-  margin-top: 56px;
-  border: 1px solid var(--bdr);
-  overflow: hidden;
-}
-
-.cmpTable {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.cmpTable thead tr {
-  background: var(--card);
-  border-bottom: 1px solid var(--bdr);
-}
-
-.cmpTable th {
-  padding: 16px 24px;
-  text-align: left;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--t3);
-}
-
-.cmpTable th:nth-child(3) {
-  color: var(--blue);
-}
-
-.cmpTable td {
-  padding: 18px 24px;
-  font-size: 14px;
+.agentRole {
+  font-size: 13px;
   color: var(--t2);
-  border-bottom: 1px solid rgba(28, 42, 58, 0.6);
-  vertical-align: top;
+  line-height: 1.6;
 }
 
-.cmpTable tr:last-child td {
-  border-bottom: none;
+/* ── CTA ──────────────────────────────────────────────── */
+.cta {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid var(--bdr-2);
+  border-radius: 28px;
+  background: linear-gradient(180deg, var(--card), var(--ink-2));
+  padding: 80px 32px;
 }
 
-.cmpTable tr:hover td {
-  background: rgba(255, 255, 255, 0.01);
+.ctaGlow {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  width: 760px;
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 65%);
+  pointer-events: none;
 }
 
-.cmpTable td:first-child {
-  font-weight: 600;
-  color: var(--t1);
+.cta > * {
+  position: relative;
 }
 
-.bad {
-  color: var(--t3);
-}
-.good {
-  color: var(--green);
-}
-
-/* ── federal cards ── */
-.fedGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 48px;
-}
-
-.fedCard {
-  background: var(--card);
-  border: 1px solid var(--bdr);
-  border-left: 2px solid var(--blue);
-  padding: 24px 26px;
-}
-
-.fedCardH {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--t1);
-  margin-bottom: 8px;
-}
-
-.fedCardP {
-  font-size: 13px;
-  color: var(--t3);
-  line-height: 1.7;
-}
-
-.badgeRow {
+.ctaButtons {
   display: flex;
+  gap: 14px;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 28px;
 }
 
-.badge {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border: 1px solid var(--bdr);
-  color: var(--t3);
+/* ── responsive ───────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .crew {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.badgeOn {
-  border-color: rgba(26, 111, 255, 0.45);
-  color: var(--blue);
-  background: rgba(26, 111, 255, 0.07);
-}
-
-/* ── source flow ── */
-.srcFlow {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.srcItem {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--card);
-  border: 1px solid var(--bdr);
-  padding: 14px 18px;
-  transition: border-color var(--t-base);
-}
-
-.srcItem:hover {
-  border-color: rgba(26, 111, 255, 0.4);
-}
-
-.srcIco {
-  width: 34px;
-  height: 34px;
-  background: rgba(26, 111, 255, 0.1);
-  border: 1px solid rgba(26, 111, 255, 0.2);
-  display: grid;
-  place-items: center;
-  font-size: 15px;
-  flex-shrink: 0;
-}
-
-.srcN {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--t1);
-}
-
-.srcT {
-  font-size: 11px;
-  color: var(--t3);
-  letter-spacing: 0.06em;
-}
-
-.arrowDn {
-  text-align: center;
-  font-size: 20px;
-  color: var(--blue);
-  padding: 6px 0;
-  letter-spacing: 5px;
-}
-
-.argusBox {
-  background: rgba(26, 111, 255, 0.07);
-  border: 1px solid rgba(26, 111, 255, 0.3);
-  padding: 18px 22px;
-  text-align: center;
-}
-
-.argusBoxT {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blue);
-}
-
-.argusBoxS {
-  font-size: 12px;
-  color: var(--t3);
-  margin-top: 4px;
-}
-
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 32px;
-}
-
-.stepRow {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.stepNum {
-  width: 26px;
-  height: 26px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-
-.stepText strong {
-  display: block;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--t1);
-  margin-bottom: 2px;
-}
-
-.stepText span {
-  font-size: 13px;
-  color: var(--t3);
-}
-
-/* ── responsive ── */
 @media (max-width: 960px) {
+  .hero {
+    padding: 96px 0 56px;
+  }
   .heroStats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -402,34 +402,24 @@
   .hStat:nth-child(odd) {
     padding-left: 0;
   }
-  .agents {
-    grid-template-columns: 1fr 1fr;
+  .capability,
+  .capability:nth-child(1),
+  .capability:nth-child(2),
+  .capability:nth-child(3),
+  .capability:nth-child(4) {
+    grid-column: 1 / -1;
   }
-  .fedGrid {
-    grid-template-columns: 1fr;
-  }
-  .cmpTable td,
-  .cmpTable th {
-    padding: 12px 14px;
-    font-size: 13px;
+  .crew {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 640px) {
-  .agents {
+@media (max-width: 560px) {
+  .crew {
     grid-template-columns: 1fr;
   }
-  .heroStats {
-    grid-template-columns: 1fr;
-  }
-  .hStat {
-    border-right: none;
-    padding: 22px 0;
-  }
-  .hStat:nth-last-child(-n + 2) {
-    border-bottom: 1px solid var(--bdr);
-  }
-  .hStat:last-child {
-    border-bottom: none;
+  .cta {
+    padding: 56px 22px;
+    border-radius: 22px;
   }
 }

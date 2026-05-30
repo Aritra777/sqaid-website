@@ -93,17 +93,24 @@
   min-height: 100vh;
 }
 
-/* ── Argus · the all-seeing — violet → indigo (placeholder, tuned on review) ── */
+/* ── Argus · agentic AML investigation — DARK theme, emerald → mint accent.
+   Argus's app (graph explorer) is dark, so this page keeps the base dark
+   surfaces and only re-points the accent to a live, "all-seeing" green —
+   distinct from FARO blue and Case Manager violet. ── */
 .theme-argus {
-  --accent: #8b5cf6;
-  --accent-2: #c084fc;
-  --accent-deep: #5b21b6;
-  --accent-press: #7c4def;
-  --accent-contrast: #ffffff;
-  --accent-soft: rgba(139, 92, 246, 0.08);
-  --accent-border: rgba(139, 92, 246, 0.28);
-  --accent-glow: rgba(139, 92, 246, 0.16);
-  --accent-grid: rgba(139, 92, 246, 0.04);
+  --accent: #18e29a;
+  --accent-2: #5effbf;
+  --accent-deep: #0a6e54;
+  --accent-press: #12c886;
+  --accent-contrast: #02140d; /* dark text reads better on bright green */
+  --accent-soft: rgba(24, 226, 154, 0.08);
+  --accent-border: rgba(24, 226, 154, 0.3);
+  --accent-glow: rgba(24, 226, 154, 0.16);
+  --accent-grid: rgba(24, 226, 154, 0.04);
+
+  background: var(--ink);
+  color: var(--t1);
+  min-height: 100vh;
 }
 
 /* ── Abacus · analytics & calc — amber → orange (placeholder, tuned on review) ── */
