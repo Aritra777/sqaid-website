@@ -7,50 +7,99 @@ import styles from "./Argus.module.css";
 
 type Stat = { value: string; unit?: string; label: string };
 type Capability = { tag: string; title: string; body: string };
-type Agent = { name: string; role: string };
+type Agent = { type: string; name: string; desc: string };
 
 const HERO_STATS: Stat[] = [
-  { value: "11", label: "Specialized agents in the investigation crew" },
-  { value: "3", unit: "yrs", label: "Of fragmented data unified into one timeline" },
-  { value: "90", unit: "%", label: "Less manual review on each alert" },
-  { value: "24/7", label: "Autonomous monitoring and triage" },
+  { value: "50", unit: "+", label: "Production detection rules" },
+  { value: "12", label: "Specialized AI agents in the squad" },
+  { value: "<5", unit: "ms", label: "Rule evaluation per event" },
+  { value: "12", unit: "×", label: "Hop depth on funds-tracing walks" },
 ];
 
 const CAPABILITIES: Capability[] = [
   {
-    tag: "Ingestion",
-    title: "Every record, one timeline",
-    body: "Argus pulls together transactions, KYC, communications, and case history into a single chronological view of each subject — so nothing hides in a silo.",
+    tag: "Knowledge graph",
+    title: "Risk lives in relationships",
+    body: "Argus links every customer, account, device, IP, wallet, and beneficial owner in a live Neo4j graph — then propagates risk across edges with hop-decay. 2-hop sanctions exposure, money-mule rings, and 12-hop funds traces surface automatically.",
   },
   {
-    tag: "Detection",
-    title: "Patterns humans miss",
-    body: "Graph and behavioral models surface structuring, layering, and coordinated activity across accounts that rule-based systems never connect.",
+    tag: "Rules engine",
+    title: "Rules dispatch the investigation",
+    body: "Each rule carries investigation instructions — which edges to walk, how far, how fast risk decays, and which agent playbooks to fire. The Sentinel evaluates against Oracle SQL and Neo4j Cypher and matches in under 5ms.",
   },
   {
-    tag: "Investigation",
-    title: "An autonomous analyst crew",
-    body: "Eleven specialized agents divide the work — each owning a slice of the investigation, from entity resolution to narrative generation.",
+    tag: "Agent squad",
+    title: "Twelve agents on every alert",
+    body: "When a rule fires, twelve specialized agents are dispatched automatically — graph, behavioral, fraud, funds-tracing, identity, and synthesis — building in seconds what would take an analyst days.",
   },
   {
-    tag: "Output",
-    title: "Decisions, not dashboards",
-    body: "Argus delivers a recommended disposition with the evidence trail attached — so investigators confirm, they don't assemble.",
+    tag: "Compliance",
+    title: "Regulator-ready by default",
+    body: "SAR-ready narratives with no hedging, explainable risk decomposition, and full correlation-ID lineage from source event → rule → alert → agent → decision.",
   },
 ];
 
 const AGENTS: Agent[] = [
-  { name: "Intake", role: "Normalizes and links incoming alerts" },
-  { name: "Entity Resolution", role: "Merges identities across data sources" },
-  { name: "Timeline", role: "Builds the chronological case view" },
-  { name: "Transaction Analysis", role: "Flags anomalous money movement" },
-  { name: "Graph", role: "Maps relationships between subjects" },
-  { name: "Sanctions & PEP", role: "Screens against watchlists" },
-  { name: "Behavioral", role: "Models deviation from normal activity" },
-  { name: "Narrative", role: "Drafts the investigation summary" },
-  { name: "QA", role: "Checks reasoning and evidence quality" },
-  { name: "Disposition", role: "Recommends an action with rationale" },
-  { name: "Audit", role: "Records every step for regulators" },
+  {
+    type: "Routing",
+    name: "Orchestrator",
+    desc: "LLM-driven intent router. Classifies queries, resolves pronouns from conversation history, and extracts entities before dispatching the pipeline.",
+  },
+  {
+    type: "Graph",
+    name: "Investigator",
+    desc: "Walks Neo4j up to 2 hops, mapping every high-risk neighbor with WHY (PEP, sanctioned, adverse media) and HOW (edge type + amount).",
+  },
+  {
+    type: "Temporal",
+    name: "ProfileShift",
+    desc: "Traverses the SCD-2 ProfileSnapshot chain over 90 days. Detects the exact moment a profile changed — PEP flip, sanctions match, KYC downgrade.",
+  },
+  {
+    type: "Threat Intel",
+    name: "DarkWebScanner",
+    desc: "Runs fresh dark-web credential-breach checks on every customer under investigation. Distinguishes active exposure from stale records.",
+  },
+  {
+    type: "Behavioral",
+    name: "CustomerProfiler",
+    desc: "Cross-account structuring counts, layering depth, peer-deviation z-scores, ATO signal scores — computed fresh on demand against Oracle.",
+  },
+  {
+    type: "Behavioral",
+    name: "AccountProfiler",
+    desc: "Per-account rolling stats: 30/90-day outbound volume, velocity spikes, new-counterparty churn, dormancy flags.",
+  },
+  {
+    type: "Fraud",
+    name: "AccountTakeover",
+    desc: "Device signals (rooted, jailbroken, emulator) plus login signals (VPN, TOR, failed bursts, SIM swaps). Correlated with breach flags.",
+  },
+  {
+    type: "Payments",
+    name: "PaymentFraud",
+    desc: "Outbound velocity and payment-scheme mix (SWIFT, ACH, SEPA, UPI, crypto). Flags cross-scheme structuring invisible to single-scheme rules.",
+  },
+  {
+    type: "Network",
+    name: "NetworkRing",
+    desc: "Shared-identifier ring detection across devices, IPs, addresses, wallets, and cards. Surfaces coordinated money-mule networks.",
+  },
+  {
+    type: "Follow the money",
+    name: "FundsTrace",
+    desc: "Recursive 12-hop walk through HAS_ACCOUNT → PAID_TO → ROUTED_VIA chains. Surfaces every reachable sanctioned or adverse-media endpoint.",
+  },
+  {
+    type: "Identity",
+    name: "Resolver",
+    desc: "Entity resolution against Oracle. Surfaces duplicate identities, synthetic-identity patterns, and name-masking with confidence scores.",
+  },
+  {
+    type: "Synthesis",
+    name: "Narrator",
+    desc: "Synthesizes all agent findings into a ≤400-word, no-hedging narrative with clickable entity links. SAR-ready output.",
+  },
 ];
 
 export default function Argus() {
@@ -75,7 +124,7 @@ export default function Argus() {
           </Reveal>
 
           <Reveal as="p" className={styles.sub} delay={120}>
-            Argus is an <b>agentic AML investigation platform</b>. Eleven specialized AI agents
+            Argus is an <b>agentic AML investigation platform</b>. Twelve specialized AI agents
             work together to triage alerts, connect the dots across years of data, and hand your
             team a recommended disposition — with the full evidence trail attached.
           </Reveal>
@@ -174,7 +223,7 @@ export default function Argus() {
               The crew
             </Reveal>
             <Reveal as="h2" className="section-title" delay={60}>
-              Eleven agents. <em>One investigation.</em>
+              Twelve agents. <em>One investigation.</em>
             </Reveal>
             <Reveal as="p" className="section-lede" delay={120}>
               Each agent owns a slice of the investigation and hands its work to the next — like a
@@ -185,9 +234,9 @@ export default function Argus() {
           <div className={styles.crew}>
             {AGENTS.map((a, i) => (
               <Reveal key={a.name} className={styles.agent} delay={(i % 4) * 60}>
-                <div className={styles.agentNum}>{String(i + 1).padStart(2, "0")}</div>
+                <div className={styles.agentType}>{a.type}</div>
                 <h3 className={styles.agentName}>{a.name}</h3>
-                <p className={styles.agentRole}>{a.role}</p>
+                <p className={styles.agentDesc}>{a.desc}</p>
               </Reveal>
             ))}
           </div>
