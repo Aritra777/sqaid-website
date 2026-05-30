@@ -1,0 +1,91 @@
+/* Per-product themes. Each class overrides ONLY the semantic accent tokens from
+   tokens.css — surfaces, type, spacing stay shared so the family reads as one
+   system with distinct product identities. Apply by wrapping a page's content in
+   the matching class, e.g. <div className="theme-faro">…</div>.
+
+   These are intentionally GLOBAL (not CSS-module) classes so they cross module
+   boundaries and cascade into component styles. Add a hue per product here; never
+   hardcode colors inside product/component styles. */
+
+/* ── FARO · real-time fraud & AML — LIGHT theme to match the white product UI.
+   Unlike the other (dark) product themes, FARO overrides the surface, text and
+   shadow tokens too, so the whole page reads light like the app screenshot.
+   The wrapper paints its own light background so it overrides the dark body. ── */
+.theme-faro {
+  /* surfaces */
+  --ink: #f4f7fb;
+  --ink-2: #eaf0f8;
+  --panel: #ffffff;
+  --card: #ffffff;
+  --card-hover: #f3f7fd;
+
+  /* borders / dividers */
+  --bdr: #e2e8f1;
+  --bdr-2: #d0dae8;
+
+  /* text */
+  --t1: #0a1626;
+  --t2: #4a5b70;
+  --t3: #8493a6;
+
+  /* accent — azure → cyan, matched to the app's blue */
+  --accent: #2f6bff;
+  --accent-2: #1aa3ff;
+  --accent-deep: #0f3d99;
+  --accent-press: #1f57e6;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(47, 107, 255, 0.08);
+  --accent-border: rgba(47, 107, 255, 0.22);
+  --accent-glow: rgba(47, 107, 255, 0.1);
+  --accent-grid: rgba(47, 107, 255, 0.05);
+
+  /* soft shadows for a light surface */
+  --shadow-frame: 0 0 0 1px rgba(15, 30, 60, 0.04), 0 30px 70px rgba(15, 30, 60, 0.16);
+  --shadow-card: 0 0 0 1px rgba(15, 30, 60, 0.03), 0 30px 70px rgba(15, 30, 60, 0.16);
+  --shadow-card-strong: 0 0 0 1px rgba(15, 30, 60, 0.04), 0 40px 90px rgba(15, 30, 60, 0.22);
+  --shadow-hover: 0 16px 36px rgba(15, 30, 60, 0.12);
+
+  /* paint the page light (body underneath stays dark for other pages) */
+  background: var(--ink);
+  color: var(--t1);
+  min-height: 100vh;
+}
+
+/* ── Case Manager · case ops & workflow — teal → emerald (placeholder, tuned on review) ── */
+.theme-case-manager {
+  --accent: #12b6a0;
+  --accent-2: #38e0a8;
+  --accent-deep: #0a6e63;
+  --accent-press: #0e9d8b;
+  --accent-contrast: #02110e;
+  --accent-soft: rgba(18, 182, 160, 0.08);
+  --accent-border: rgba(18, 182, 160, 0.28);
+  --accent-glow: rgba(18, 182, 160, 0.16);
+  --accent-grid: rgba(18, 182, 160, 0.04);
+}
+
+/* ── Argus · the all-seeing — violet → indigo (placeholder, tuned on review) ── */
+.theme-argus {
+  --accent: #8b5cf6;
+  --accent-2: #c084fc;
+  --accent-deep: #5b21b6;
+  --accent-press: #7c4def;
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(139, 92, 246, 0.08);
+  --accent-border: rgba(139, 92, 246, 0.28);
+  --accent-glow: rgba(139, 92, 246, 0.16);
+  --accent-grid: rgba(139, 92, 246, 0.04);
+}
+
+/* ── Abacus · analytics & calc — amber → orange (placeholder, tuned on review) ── */
+.theme-abacus {
+  --accent: #ffb020;
+  --accent-2: #ff7a45;
+  --accent-deep: #b3660a;
+  --accent-press: #f0991a;
+  --accent-contrast: #1a0f00;
+  --accent-soft: rgba(255, 176, 32, 0.09);
+  --accent-border: rgba(255, 176, 32, 0.3);
+  --accent-glow: rgba(255, 176, 32, 0.16);
+  --accent-grid: rgba(255, 176, 32, 0.045);
+}

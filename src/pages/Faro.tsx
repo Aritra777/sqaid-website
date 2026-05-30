@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import ScreenshotFrame from "@/components/ScreenshotFrame";
+import Reveal from "@/components/Reveal";
+import { useTilt } from "@/lib/use-tilt";
 import { COMPANY_EMAIL } from "@/lib/nav-data";
 import { useDocumentTitle } from "@/lib/use-document-title";
 import styles from "./Faro.module.css";
@@ -68,91 +70,116 @@ const STAGES: Stage[] = [
 
 export default function Faro() {
   useDocumentTitle("Faro · Real-time fraud & AML platform");
+  const tilt = useTilt({ max: 5 });
+
   return (
-    <>
+    <div className="theme-faro">
       {/* ── HERO ─────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroGrid} aria-hidden="true" />
+        <div className={styles.heroGlow} aria-hidden="true" />
+
         <div className={`container ${styles.heroInner}`}>
-          <div className="eyebrow">
+          <Reveal className="eyebrow" delay={0}>
             <span className="eyebrow-dot" />
             Faro · Real-time fraud &amp; AML
-          </div>
-          <h1 className={styles.h1}>
+          </Reveal>
+
+          <Reveal as="h1" className={styles.h1} delay={60}>
             Catch the fraud.
             <br />
             <em>Stop the laundering.</em>
             <br />
             In real time.
-          </h1>
-          <p className={styles.sub}>
+          </Reveal>
+
+          <Reveal as="p" className={styles.sub} delay={120}>
             Faro brings <b>fraud detection and anti-money-laundering into a single real-time
             platform</b> — so every transaction is scored, every alert is investigated, and every
             decision is delivered back to your downstream systems with full evidence and lineage.
-          </p>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <a
-              href={`mailto:${COMPANY_EMAIL}?subject=Faro%20demo`}
-              className="btn btn--primary"
-            >
+          </Reveal>
+
+          <Reveal className={styles.heroCtas} delay={180}>
+            <a href={`mailto:${COMPANY_EMAIL}?subject=Faro%20demo`} className="btn btn--primary">
               Request a Demo &nbsp;→
             </a>
             <a href="#capabilities" className="btn btn--ghost">
               What it does
             </a>
-          </div>
+          </Reveal>
+        </div>
+
+        {/* floating product shot with pointer tilt */}
+        <div className={`container ${styles.heroStageWrap}`}>
+          <Reveal delay={240}>
+            <div className={styles.heroStage}>
+              <div
+                ref={tilt.ref}
+                className={styles.heroCard}
+                onPointerMove={tilt.onMove}
+                onPointerLeave={tilt.onLeave}
+              >
+                <div className={styles.heroChrome} aria-hidden="true">
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroDot} />
+                  <span className={styles.heroUrl}>app.sqaid.ai / faro</span>
+                  <span className={styles.heroBadge}>● Live</span>
+                </div>
+                <img
+                  className={styles.heroShot}
+                  src="/assets/FARO.png"
+                  alt="Faro fraud & AML control center — alert triage workspace"
+                  width={3024}
+                  height={1640}
+                />
+                <div className={styles.heroGlare} aria-hidden="true" />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* stats */}
+        <div className="container">
           <ul className={styles.heroStats}>
-            {HERO_STATS.map((s) => (
-              <li key={s.label} className={styles.hStat}>
+            {HERO_STATS.map((s, i) => (
+              <Reveal as="li" key={s.label} className={styles.hStat} delay={300 + i * 70}>
                 <div className={styles.hStatVal}>
                   {s.value}
                   {s.unit && <span>{s.unit}</span>}
                 </div>
                 <div className={styles.hStatLabel}>{s.label}</div>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* ── SCREENSHOT ───────────────────────────────── */}
-      <section style={{ paddingBottom: "var(--space-10)" }}>
-        <div className="container">
-          <ScreenshotFrame
-            label="Faro — fraud & AML control center"
-            url="app.sqaid.ai / faro"
-            badge="Live"
-            aspect="16 / 9"
-            caption="Faro control center"
-          />
-        </div>
-      </section>
-
-      {/* ── CAPABILITIES ─────────────────────────────── */}
+      {/* ── CAPABILITIES (bento) ─────────────────────── */}
       <section id="capabilities" className="section section--alt">
         <div className="container">
           <div className="section--center" style={{ marginBottom: 0 }}>
-            <div className="eyebrow">
+            <Reveal className="eyebrow">
               <span className="eyebrow-dot" />
               What Faro does
-            </div>
-            <h2 className="section-title">
+            </Reveal>
+            <Reveal as="h2" className="section-title" delay={60}>
               Fraud and AML, <em>finally in the same flow.</em>
-            </h2>
-            <p className="section-lede">
+            </Reveal>
+            <Reveal as="p" className="section-lede" delay={120}>
               Most institutions run fraud and AML on two different stacks, with two different
               teams, looking at the same customer. Faro brings them together — so the signals
               compound instead of conflict.
-            </p>
+            </Reveal>
           </div>
 
-          <div className={styles.capabilities}>
-            {CAPABILITIES.map((c) => (
-              <article key={c.title} className={styles.capability}>
+          <div className={styles.bento}>
+            {CAPABILITIES.map((c, i) => (
+              <Reveal key={c.title} className={styles.capability} delay={i * 90}>
                 <div className={styles.capTag}>{c.tag}</div>
                 <h3 className={styles.capTitle}>{c.title}</h3>
                 <p className={styles.capBody}>{c.body}</p>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -162,27 +189,28 @@ export default function Faro() {
       <section className="section">
         <div className="container">
           <div className="section--center" style={{ marginBottom: 56 }}>
-            <div className="eyebrow">
+            <Reveal className="eyebrow">
               <span className="eyebrow-dot" />
               How it works
-            </div>
-            <h2 className="section-title">
+            </Reveal>
+            <Reveal as="h2" className="section-title" delay={60}>
               Five stages. <em>One platform.</em>
-            </h2>
-            <p className="section-lede">
+            </Reveal>
+            <Reveal as="p" className="section-lede" delay={120}>
               From the moment a transaction lands to the moment a verdict reaches your downstream
               systems, every step happens in one platform — with one decision and one audit
               trail.
-            </p>
+            </Reveal>
           </div>
 
           <div className={styles.stages}>
-            {STAGES.map((s) => (
-              <article key={s.label} className={styles.stage}>
+            {STAGES.map((s, i) => (
+              <Reveal key={s.label} className={styles.stage} delay={i * 70}>
                 <div className={styles.stageLabel}>{s.label}</div>
                 <h3 className={styles.stageTitle}>{s.title}</h3>
                 <p className={styles.stageBody}>{s.body}</p>
-              </article>
+                <span className={styles.stageLine} aria-hidden="true" />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -192,15 +220,16 @@ export default function Faro() {
       <section className="section section--alt">
         <div className="container">
           <div className="two-col two-col--flip">
-            <div className="two-col__a">
+            <Reveal className="two-col__a">
               <ScreenshotFrame
                 label="Verdict view"
                 url="app.sqaid.ai / faro / verdict"
-                aspect="4 / 3"
-                caption="Faro verdict view"
+                aspect="16 / 9"
+                src="/assets/FARO.png"
+                alt="Faro verdict view"
               />
-            </div>
-            <div className="two-col__b">
+            </Reveal>
+            <Reveal className="two-col__b" delay={120}>
               <div className="eyebrow">
                 <span className="eyebrow-dot" />
                 One decision, full evidence
@@ -237,40 +266,40 @@ export default function Faro() {
                   </span>
                 </li>
               </ul>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="section section--center">
+      <section className="section">
         <div className="container">
-          <div className="eyebrow">
-            <span className="eyebrow-dot" />
-            Get started
-          </div>
-          <h2 className="section-title">
-            Bring fraud and AML together.
-            <br />
-            <em>See it on your data.</em>
-          </h2>
-          <p className="section-lede" style={{ marginBottom: 32 }}>
-            Twenty minutes — we&apos;ll walk you through Faro on a transaction profile that
-            looks like yours.
-          </p>
-          <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <a
-              href={`mailto:${COMPANY_EMAIL}?subject=Faro%20demo`}
-              className="btn btn--primary"
-            >
-              Request a Demo &nbsp;→
-            </a>
-            <Link to="/#solution" className="btn btn--ghost">
-              See the Platform
-            </Link>
-          </div>
+          <Reveal className={styles.cta}>
+            <div className={styles.ctaGlow} aria-hidden="true" />
+            <div className="eyebrow" style={{ justifyContent: "center" }}>
+              <span className="eyebrow-dot" />
+              Get started
+            </div>
+            <h2 className="section-title">
+              Bring fraud and AML together.
+              <br />
+              <em>See it on your data.</em>
+            </h2>
+            <p className="section-lede" style={{ marginBottom: 32 }}>
+              Twenty minutes — we&apos;ll walk you through Faro on a transaction profile that
+              looks like yours.
+            </p>
+            <div className={styles.ctaButtons}>
+              <a href={`mailto:${COMPANY_EMAIL}?subject=Faro%20demo`} className="btn btn--primary">
+                Request a Demo &nbsp;→
+              </a>
+              <Link to="/#solution" className="btn btn--ghost">
+                See the Platform
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }
