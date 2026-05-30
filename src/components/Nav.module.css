@@ -9,10 +9,36 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--gutter);
-  background: rgba(5, 8, 13, 0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--bdr);
+}
+
+/* right-side controls cluster (theme toggle · demo · mobile hamburger) */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-pill);
+  color: var(--t2);
+  border: 1px solid var(--bdr-2);
+  background: transparent;
+  transition: color var(--t-base), border-color var(--t-base), background var(--t-base);
+}
+
+.themeToggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
 }
 
 .brand {

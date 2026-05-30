@@ -1,127 +1,84 @@
-/* Per-product themes. Each class overrides ONLY the semantic accent tokens from
-   tokens.css — surfaces, type, spacing stay shared so the family reads as one
-   system with distinct product identities. Apply by wrapping a page's content in
-   the matching class, e.g. <div className="theme-faro">…</div>.
+/* ───────────────────────────────────────────────────────────────
+   Product accents (AXIS 2). Each product wrapper sets ONLY the accent
+   tokens — surfaces/text/shadows come from the MODE (see tokens.css),
+   so every product works in both light and dark.
 
-   These are intentionally GLOBAL (not CSS-module) classes so they cross module
-   boundaries and cascade into component styles. Add a hue per product here; never
-   hardcode colors inside product/component styles. */
+   Apply by wrapping a page's root in the class, e.g.
+     <div className="theme-faro"> … </div>
 
-/* ── FARO · real-time fraud & AML — LIGHT theme to match the white product UI.
-   Unlike the other (dark) product themes, FARO overrides the surface, text and
-   shadow tokens too, so the whole page reads light like the app screenshot.
-   The wrapper paints its own light background so it overrides the dark body. ── */
+   These are intentionally GLOBAL (non-module) classes so they cross
+   CSS-module boundaries. Bright accents (green/amber/violet) are
+   darkened under [data-theme="light"] for legible contrast on white.
+   ─────────────────────────────────────────────────────────────── */
+
+/* ── FARO · real-time fraud & AML — azure → cyan ── */
 .theme-faro {
-  /* surfaces */
-  --ink: #f4f7fb;
-  --ink-2: #eaf0f8;
-  --panel: #ffffff;
-  --card: #ffffff;
-  --card-hover: #f3f7fd;
-
-  /* borders / dividers */
-  --bdr: #e2e8f1;
-  --bdr-2: #d0dae8;
-
-  /* text */
-  --t1: #0a1626;
-  --t2: #4a5b70;
-  --t3: #8493a6;
-
-  /* accent — azure → cyan, matched to the app's blue */
   --accent: #2f6bff;
-  --accent-2: #1aa3ff;
+  --accent-2: #19d3ff;
   --accent-deep: #0f3d99;
   --accent-press: #1f57e6;
   --accent-contrast: #ffffff;
   --accent-soft: rgba(47, 107, 255, 0.08);
-  --accent-border: rgba(47, 107, 255, 0.22);
-  --accent-glow: rgba(47, 107, 255, 0.1);
-  --accent-grid: rgba(47, 107, 255, 0.05);
-
-  /* soft shadows for a light surface */
-  --shadow-frame: 0 0 0 1px rgba(15, 30, 60, 0.04), 0 30px 70px rgba(15, 30, 60, 0.16);
-  --shadow-card: 0 0 0 1px rgba(15, 30, 60, 0.03), 0 30px 70px rgba(15, 30, 60, 0.16);
-  --shadow-card-strong: 0 0 0 1px rgba(15, 30, 60, 0.04), 0 40px 90px rgba(15, 30, 60, 0.22);
-  --shadow-hover: 0 16px 36px rgba(15, 30, 60, 0.12);
-
-  /* paint the page light (body underneath stays dark for other pages) */
-  background: var(--ink);
-  color: var(--t1);
-  min-height: 100vh;
+  --accent-border: rgba(47, 107, 255, 0.26);
+  --accent-glow: rgba(47, 107, 255, 0.16);
+  --accent-grid: rgba(47, 107, 255, 0.045);
 }
 
-/* ── Case Manager · configurable case ops — LIGHT theme, violet → indigo accent.
-   Same light system as FARO (so the suite reads as one family) but a distinctly
-   non-blue, premium/analytical identity. ── */
+/* ── Case Manager · configurable case ops — violet → indigo ── */
 .theme-case-manager {
-  /* surfaces — cool white */
-  --ink: #f5f6fb;
-  --ink-2: #edeef8;
-  --panel: #ffffff;
-  --card: #ffffff;
-  --card-hover: #f5f4fe;
-
-  /* borders / dividers */
-  --bdr: #e5e6f1;
-  --bdr-2: #d6d6ea;
-
-  /* text — indigo-tinted neutrals */
-  --t1: #14111f;
-  --t2: #534f6b;
-  --t3: #8a86a3;
-
-  /* accent — violet → indigo */
   --accent: #7c5cff;
   --accent-2: #a78bfa;
   --accent-deep: #4c1d95;
   --accent-press: #6b46e5;
   --accent-contrast: #ffffff;
-  --accent-soft: rgba(124, 92, 255, 0.08);
-  --accent-border: rgba(124, 92, 255, 0.24);
-  --accent-glow: rgba(124, 92, 255, 0.12);
+  --accent-soft: rgba(124, 92, 255, 0.09);
+  --accent-border: rgba(124, 92, 255, 0.28);
+  --accent-glow: rgba(124, 92, 255, 0.16);
   --accent-grid: rgba(124, 92, 255, 0.05);
-
-  /* soft shadows for a light surface (indigo-tinted) */
-  --shadow-frame: 0 0 0 1px rgba(40, 30, 80, 0.04), 0 30px 70px rgba(40, 30, 80, 0.16);
-  --shadow-card: 0 0 0 1px rgba(40, 30, 80, 0.03), 0 30px 70px rgba(40, 30, 80, 0.16);
-  --shadow-card-strong: 0 0 0 1px rgba(40, 30, 80, 0.04), 0 40px 90px rgba(40, 30, 80, 0.22);
-  --shadow-hover: 0 16px 36px rgba(40, 30, 80, 0.12);
-
-  background: var(--ink);
-  color: var(--t1);
-  min-height: 100vh;
 }
 
-/* ── Argus · agentic AML investigation — DARK theme, emerald → mint accent.
-   Argus's app (graph explorer) is dark, so this page keeps the base dark
-   surfaces and only re-points the accent to a live, "all-seeing" green —
-   distinct from FARO blue and Case Manager violet. ── */
+/* ── Argus · agentic AML investigation — emerald → mint ── */
 .theme-argus {
   --accent: #18e29a;
   --accent-2: #5effbf;
   --accent-deep: #0a6e54;
   --accent-press: #12c886;
-  --accent-contrast: #02140d; /* dark text reads better on bright green */
-  --accent-soft: rgba(24, 226, 154, 0.08);
-  --accent-border: rgba(24, 226, 154, 0.3);
-  --accent-glow: rgba(24, 226, 154, 0.16);
-  --accent-grid: rgba(24, 226, 154, 0.04);
-
-  background: var(--ink);
-  color: var(--t1);
-  min-height: 100vh;
+  --accent-contrast: #02140d; /* dark text on bright green button */
+  --accent-soft: rgba(24, 226, 154, 0.09);
+  --accent-border: rgba(24, 226, 154, 0.32);
+  --accent-glow: rgba(24, 226, 154, 0.18);
+  --accent-grid: rgba(24, 226, 154, 0.05);
 }
 
-/* ── Abacus · analytics & calc — amber → orange (placeholder, tuned on review) ── */
+/* ── Abacus · analytics (coming soon) — amber → orange ── */
 .theme-abacus {
   --accent: #ffb020;
   --accent-2: #ff7a45;
   --accent-deep: #b3660a;
   --accent-press: #f0991a;
   --accent-contrast: #1a0f00;
-  --accent-soft: rgba(255, 176, 32, 0.09);
+  --accent-soft: rgba(255, 176, 32, 0.1);
   --accent-border: rgba(255, 176, 32, 0.3);
-  --accent-glow: rgba(255, 176, 32, 0.16);
-  --accent-grid: rgba(255, 176, 32, 0.045);
+  --accent-glow: rgba(255, 176, 32, 0.18);
+  --accent-grid: rgba(255, 176, 32, 0.05);
+}
+
+/* ── light-mode contrast tweaks (bright accents need darkening on white) ── */
+[data-theme="light"] .theme-case-manager {
+  --accent: #6a45e0;
+  --accent-press: #5a37cc;
+}
+
+[data-theme="light"] .theme-argus {
+  --accent: #0a9d6e;
+  --accent-2: #0bbf86;
+  --accent-press: #08855d;
+  --accent-contrast: #ffffff; /* white text on the darker green button */
+}
+
+[data-theme="light"] .theme-abacus {
+  --accent: #b9790a;
+  --accent-2: #d96a2a;
+  --accent-press: #9c6608;
+  --accent-contrast: #ffffff;
 }
