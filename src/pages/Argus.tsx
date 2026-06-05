@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Reveal from "@/components/Reveal";
 import { useTilt } from "@/lib/use-tilt";
@@ -8,6 +9,31 @@ import styles from "./Argus.module.css";
 type Stat = { value: string; unit?: string; label: string };
 type Capability = { tag: string; title: string; body: string };
 type Agent = { type: string; name: string; desc: string };
+type Feature = {
+  eyebrow: string;
+  title: ReactNode;
+  lede: string;
+  bullets: string[];
+  img: string;
+  alt: string;
+  url: string;
+  badge?: string;
+};
+
+function Shot({ src, alt, url, badge }: { src: string; alt: string; url: string; badge?: string }) {
+  return (
+    <div className={styles.shotCard}>
+      <div className={styles.shotChrome} aria-hidden="true">
+        <span className={styles.shotDot} />
+        <span className={styles.shotDot} />
+        <span className={styles.shotDot} />
+        <span className={styles.shotUrl}>{url}</span>
+        {badge && <span className={styles.shotBadge}>● {badge}</span>}
+      </div>
+      <img className={styles.shotImg} src={src} alt={alt} loading="lazy" width={3820} height={1900} />
+    </div>
+  );
+}
 
 const HERO_STATS: Stat[] = [
   { value: "50", unit: "+", label: "Production detection rules" },
@@ -102,6 +128,113 @@ const AGENTS: Agent[] = [
   },
 ];
 
+const FEATURES: Feature[] = [
+  {
+    eyebrow: "Universal ingestion",
+    title: (
+      <>
+        Every message. <em>ISO and non-ISO.</em>
+      </>
+    ),
+    lede: "Onboard a feed once and Argus does the rest. The universal parser ingests SWIFT MT & MX, CHIPS, FEDWIRE, ACH, SEPA, RTP — and custom JSON — with schema-aware parsing, then normalizes every event straight into the graph.",
+    bullets: [
+      "Real-time payment messages, ISO 20022 and legacy alike",
+      "Onboard a message type once — Argus handles the rest",
+      "Schema mapping and a message validator built in",
+    ],
+    img: "/assets/argus/ingestion.png",
+    alt: "Argus data contracts — universal parser and ingestion for SWIFT, CHIPS, FEDWIRE, ACH, SEPA, RTP",
+    url: "app.sqaid.ai / argus / data-contracts",
+    badge: "Live",
+  },
+  {
+    eyebrow: "Configurable signals",
+    title: (
+      <>
+        Signals fire the <em>moment the graph changes.</em>
+      </>
+    ),
+    lede: "Define the signals that matter — velocity, mismatch, sanctions hits, dormancy, cross-border shifts — by type, condition, severity and family. The instant an event changes the graph, the matching signals emit and the right agents react.",
+    bullets: [
+      "Per-signal type, condition, severity and family (AML · ATO · Fraud)",
+      "Reactive to every graph event in real time",
+      "Agents subscribe to signals, then call the right rules",
+    ],
+    img: "/assets/argus/signals.png",
+    alt: "Argus configuration — a table of configurable detection signals with type, condition, severity and family",
+    url: "app.sqaid.ai / argus / configuration / signals",
+  },
+  {
+    eyebrow: "Agents wired to rules",
+    title: (
+      <>
+        Specialist agents, <em>each with its own playbook.</em>
+      </>
+    ),
+    lede: "Every agent owns the signals that trigger it and the rules it runs — AML, sanctions, account-takeover, profile-shift, KYC, network intelligence. Wire new rules onto an agent in the UI, no code required.",
+    bullets: [
+      "73 rules assigned across the squad",
+      "Each agent triggered by its own signals",
+      "Compose and assign rules visually",
+    ],
+    img: "/assets/argus/agents.png",
+    alt: "Argus detection — specialist agents with their assigned rules and triggering signals",
+    url: "app.sqaid.ai / argus / detection / agents",
+  },
+  {
+    eyebrow: "Detection flows",
+    title: (
+      <>
+        Investigation flows, <em>out of the box.</em>
+      </>
+    ),
+    lede: "Argus ships with detection pipelines for AML, sanctions screening, account takeover, profile monitoring, crypto compliance and network intelligence — and you can build net-new flows in the UI, each bundling its own signals, rules and sources.",
+    bullets: [
+      "Kafka → graph updated → signals → agents → rules → alert",
+      "Out-of-the-box flows, plus your own",
+      "Every flow ties its signals, rules and sources together",
+    ],
+    img: "/assets/argus/flows.png",
+    alt: "Argus detection flows — out-of-the-box pipelines for AML, sanctions, account takeover and more",
+    url: "app.sqaid.ai / argus / detection / flow",
+  },
+  {
+    eyebrow: "Real-time dashboards",
+    title: (
+      <>
+        Live by default. <em>Yours to shape.</em>
+      </>
+    ),
+    lede: "A real-time, fully customizable dashboard backed by the agents — open alerts, median close time, true-positive rate, high-risk customers, graph size, alert velocity and live activity, all updating as events land.",
+    bullets: [
+      "Agent-backed metrics, refreshed live",
+      "Fully customizable surface",
+      "Drill from a number straight into the graph",
+    ],
+    img: "/assets/argus/dashboard.png",
+    alt: "Argus real-time dashboard — open alerts, close time, true-positive rate, alert velocity and live activity",
+    url: "app.sqaid.ai / argus / dashboard",
+    badge: "Live",
+  },
+  {
+    eyebrow: "Argus as an MCP server",
+    title: (
+      <>
+        Talk to Argus <em>from any LLM.</em>
+      </>
+    ),
+    lede: "The entire platform is exposed as an MCP server — wire it into Claude, ChatGPT, Cursor, Codex or your own agent and just ask. Argus answers from the live graph, the same way you'd chat with an assistant.",
+    bullets: [
+      "One MCP endpoint for the whole platform",
+      "Works with Claude, ChatGPT, Cursor, Codex and more",
+      "Ask in natural language, get grounded answers",
+    ],
+    img: "/assets/argus/mcp.png",
+    alt: "Argus as an MCP server — connect Claude, ChatGPT, Cursor and other LLM clients",
+    url: "app.sqaid.ai / argus / system / mcp",
+  },
+];
+
 export default function Argus() {
   useDocumentTitle("Argus · Agentic AML investigation");
   const tilt = useTilt({ max: 5 });
@@ -158,10 +291,10 @@ export default function Argus() {
                 </div>
                 <img
                   className={styles.heroShot}
-                  src="/assets/argus01.jpg"
-                  alt="Argus graph explorer — entity link-analysis workspace"
-                  width={3926}
-                  height={2534}
+                  src="/assets/argus/graph-explorer.png"
+                  alt="Argus graph explorer — Neo4j entity graph with the AI investigation agent"
+                  width={3836}
+                  height={1910}
                 />
                 <div className={styles.heroGlare} aria-hidden="true" />
               </div>
@@ -213,6 +346,37 @@ export default function Argus() {
           </div>
         </div>
       </section>
+
+      {/* ── FEATURE WALKTHROUGH (image-driven) ───────── */}
+      {FEATURES.map((f, i) => {
+        const flip = i % 2 === 1;
+        return (
+          <section key={f.eyebrow} className={`section ${flip ? "section--alt" : ""}`}>
+            <div className="container">
+              <div className={`two-col ${flip ? "two-col--flip" : ""}`}>
+                <Reveal className="two-col__a">
+                  <div className="eyebrow">
+                    <span className="eyebrow-dot" />
+                    {f.eyebrow}
+                  </div>
+                  <h2 className="section-title">{f.title}</h2>
+                  <p className="section-lede">{f.lede}</p>
+                  <ul className="checklist">
+                    {f.bullets.map((b) => (
+                      <li key={b}>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+                <Reveal className="two-col__b" delay={120}>
+                  <Shot src={f.img} alt={f.alt} url={f.url} badge={f.badge} />
+                </Reveal>
+              </div>
+            </div>
+          </section>
+        );
+      })}
 
       {/* ── THE CREW ─────────────────────────────────── */}
       <section id="crew" className="section">

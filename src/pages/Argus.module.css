@@ -347,6 +347,71 @@
   line-height: 1.65;
 }
 
+/* ── feature screenshot card (two-col sections) ───────── */
+.shotCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--bdr-2);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--t-base), box-shadow var(--t-slow);
+}
+
+.shotCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-strong);
+}
+
+.shotChrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--bdr);
+}
+
+.shotDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bdr-2);
+  flex-shrink: 0;
+}
+
+.shotUrl {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--t3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shotBadge {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+}
+
+.shotImg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ── CTA ──────────────────────────────────────────────── */
 .cta {
   position: relative;
