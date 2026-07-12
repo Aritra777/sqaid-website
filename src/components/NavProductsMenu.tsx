@@ -101,20 +101,36 @@ export default function NavProductsMenu({ onSelect }: Props) {
               const detail = DETAILS[p.slug] ?? { eyebrow: "" };
               return (
                 <li key={p.slug}>
-                  <Link
-                    to={`/products/${p.slug}`}
-                    role="menuitem"
-                    className={`${styles.card} ${p.status === "soon" ? styles.soon : ""}`}
-                    onClick={handleSelect}
-                  >
-                    <div className={styles.cardEyebrow}>{detail.eyebrow}</div>
-                    <div className={styles.cardName}>
-                      {p.name}
-                      {p.status === "soon" && <span className={styles.tag}>Soon</span>}
+                  {p.disabled ? (
+                    <div
+                      role="menuitem"
+                      aria-disabled="true"
+                      className={`${styles.card} ${styles.soon} ${styles.disabled}`}
+                    >
+                      <div className={styles.cardEyebrow}>{detail.eyebrow}</div>
+                      <div className={styles.cardName}>
+                        {p.name}
+                        <span className={styles.tag}>Soon</span>
+                      </div>
+                      <p className={styles.cardTagline}>{p.tagline}</p>
+                      <span className={styles.cardArrow}>Coming soon</span>
                     </div>
-                    <p className={styles.cardTagline}>{p.tagline}</p>
-                    <span className={styles.cardArrow}>Explore →</span>
-                  </Link>
+                  ) : (
+                    <Link
+                      to={`/products/${p.slug}`}
+                      role="menuitem"
+                      className={`${styles.card} ${p.status === "soon" ? styles.soon : ""}`}
+                      onClick={handleSelect}
+                    >
+                      <div className={styles.cardEyebrow}>{detail.eyebrow}</div>
+                      <div className={styles.cardName}>
+                        {p.name}
+                        {p.status === "soon" && <span className={styles.tag}>Soon</span>}
+                      </div>
+                      <p className={styles.cardTagline}>{p.tagline}</p>
+                      <span className={styles.cardArrow}>Explore →</span>
+                    </Link>
+                  )}
                 </li>
               );
             })}

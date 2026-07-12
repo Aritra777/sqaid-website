@@ -272,7 +272,7 @@ export default function Faro() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="section">
+      <section className="section" style={{ padding: 'var(--space-8) 0' }}>
         <div className="container">
           <Reveal className={styles.cta}>
             <div className={styles.ctaGlow} aria-hidden="true" />

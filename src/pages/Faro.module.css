@@ -384,6 +384,10 @@
   position: relative;
 }
 
+.cta .ctaGlow {
+  position: absolute;
+}
+
 .ctaButtons {
   display: flex;
   gap: 14px;

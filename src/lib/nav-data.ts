@@ -3,9 +3,16 @@ export type ProductLink = {
   name: string;
   tagline: string;
   status: "live" | "soon";
+  disabled?: boolean;
 };
 
 export const PRODUCTS: ProductLink[] = [
+  {
+    slug: "faro",
+    name: "Faro",
+    tagline: "Real-time fraud & AML microservices",
+    status: "live",
+  },
   {
     slug: "argus",
     name: "Argus",
@@ -19,16 +26,11 @@ export const PRODUCTS: ProductLink[] = [
     status: "live",
   },
   {
-    slug: "faro",
-    name: "Faro",
-    tagline: "Real-time fraud & AML microservices",
-    status: "live",
-  },
-  {
     slug: "abacus",
     name: "Abacus",
     tagline: "Coming soon",
     status: "soon",
+    disabled: true,
   },
 ];
 

@@ -77,15 +77,6 @@ const COMPARISON: CmpRow[] = [
   },
 ];
 
-const STACK = [
-  { name: "React", note: "frontend" },
-  { name: "Spring Boot", note: "Java services" },
-  { name: "PostgreSQL", note: "primary store" },
-  { name: "MongoDB", note: "config & flexible schemas" },
-  { name: "AWS EC2 · RDS", note: "deployment" },
-  { name: "React Flow", note: "workflow canvas" },
-];
-
 export default function CaseManager() {
   useDocumentTitle("Case Manager · Configurable case management");
   const tilt = useTilt({ max: 5 });
@@ -265,7 +256,7 @@ export default function CaseManager() {
       {/* ── WORKFLOW DESIGNER ────────────────────────── */}
       <section className="section section--alt">
         <div className="container">
-          <div className="two-col two-col--flip">
+          <div className="two-col">
             <Reveal className="two-col__a">
               <div className={styles.specCard}>
                 <div className={styles.specCardLabel}>Workflow engine</div>
@@ -411,7 +402,7 @@ export default function CaseManager() {
       </section>
 
       {/* ── STACK ─────────────────────────────────────── */}
-      <section className="section section--center">
+      {/* <section className="section section--center">
         <div className="container">
           <Reveal className="eyebrow" style={{ justifyContent: "center" }}>
             <span className="eyebrow-dot" />
@@ -434,10 +425,10 @@ export default function CaseManager() {
             ))}
           </Reveal>
         </div>
-      </section>
+      </section> */}
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="section">
+      <section className="section" style={{ padding: 'var(--space-8) 0' }}>
         <div className="container">
           <Reveal className={styles.cta}>
             <div className={styles.ctaGlow} aria-hidden="true" />

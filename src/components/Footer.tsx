@@ -27,10 +27,17 @@ export default function Footer() {
           <ul className={styles.list}>
             {PRODUCTS.map((p) => (
               <li key={p.slug}>
-                <Link to={`/products/${p.slug}`}>
-                  {p.name}
-                  {p.status === "soon" && <span className={styles.tag}>Soon</span>}
-                </Link>
+                {p.disabled ? (
+                  <span style={{ opacity: 0.45, cursor: "default" }}>
+                    {p.name}
+                    <span className={styles.tag}>Soon</span>
+                  </span>
+                ) : (
+                  <Link to={`/products/${p.slug}`}>
+                    {p.name}
+                    {p.status === "soon" && <span className={styles.tag}>Soon</span>}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

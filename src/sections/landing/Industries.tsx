@@ -1,4 +1,3 @@
-import ScreenshotFrame from "@/components/ScreenshotFrame";
 import styles from "./Industries.module.css";
 
 type Pillar = { title: string; body: string };
@@ -32,64 +31,52 @@ export default function Industries() {
   return (
     <section id="industries" className="section">
       <div className="container">
-        <div className="two-col">
-          <div className="two-col__a">
-            <div className="eyebrow">
-              <span className="eyebrow-dot" />
-              Built for banking
-            </div>
-            <h2 className="section-title">
-              Purpose-built for the <em>compliance back office</em> of modern banks.
-            </h2>
-            <p className="section-lede">
-              SqAId is designed around the specific pressures of banking compliance — high alert
-              volume, layered investigations, multi-jurisdiction reporting, and the unforgiving
-              audit standards of FinCEN, OFAC, and the FATF. Every feature exists because a
-              compliance team asked for it.
-            </p>
-
-            <ul className={styles.pillarList}>
-              {BANKING_PILLARS.map((p) => (
-                <li key={p.title} className={styles.pillar}>
-                  <div className={styles.pillarBullet} aria-hidden="true">
-                    →
-                  </div>
-                  <div>
-                    <div
-                      className={styles.pillarTitle}
-                      dangerouslySetInnerHTML={{ __html: p.title }}
-                    />
-                    <p
-                      className={styles.pillarBody}
-                      dangerouslySetInnerHTML={{ __html: p.body }}
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <ul className={styles.statRow}>
-              {BANKING_STATS.map((s) => (
-                <li key={s.label} className={styles.stat}>
-                  <div className={styles.statVal}>
-                    {s.value}
-                    {s.unit && <span>{s.unit}</span>}
-                  </div>
-                  <div className={styles.statLabel}>{s.label}</div>
-                </li>
-              ))}
-            </ul>
+        <div>
+          <div className="eyebrow">
+            <span className="eyebrow-dot" />
+            Built for banking
           </div>
+          <h2 className="section-title">
+            Purpose-built for the <em>compliance back office</em> of modern banks.
+          </h2>
+          <p className="section-lede">
+            SqAId is designed around the specific pressures of banking compliance — high alert
+            volume, layered investigations, multi-jurisdiction reporting, and the unforgiving
+            audit standards of FinCEN, OFAC, and the FATF. Every feature exists because a
+            compliance team asked for it.
+          </p>
 
-          <div className="two-col__b">
-            <ScreenshotFrame
-              label="Banking compliance — investigation view"
-              url="app.sqaid.ai / banking / investigation"
-              badge="Live"
-              aspect="4 / 5"
-              caption="Banking investigation workspace"
-            />
-          </div>
+          <ul className={styles.pillarList}>
+            {BANKING_PILLARS.map((p) => (
+              <li key={p.title} className={styles.pillar}>
+                <div className={styles.pillarBullet} aria-hidden="true">
+                  →
+                </div>
+                <div>
+                  <div
+                    className={styles.pillarTitle}
+                    dangerouslySetInnerHTML={{ __html: p.title }}
+                  />
+                  <p
+                    className={styles.pillarBody}
+                    dangerouslySetInnerHTML={{ __html: p.body }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <ul className={styles.statRow}>
+            {BANKING_STATS.map((s) => (
+              <li key={s.label} className={styles.stat}>
+                <div className={styles.statVal}>
+                  {s.value}
+                  {s.unit && <span>{s.unit}</span>}
+                </div>
+                <div className={styles.statLabel}>{s.label}</div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

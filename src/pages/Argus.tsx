@@ -199,21 +199,21 @@ const FEATURES: Feature[] = [
     url: "app.sqaid.ai / argus / detection / flow",
   },
   {
-    eyebrow: "Real-time dashboards",
+    eyebrow: "Graph explorer",
     title: (
       <>
-        Live by default. <em>Yours to shape.</em>
+        Every entity, every link. <em>Instantly visible.</em>
       </>
     ),
-    lede: "A real-time, fully customizable dashboard backed by the agents — open alerts, median close time, true-positive rate, high-risk customers, graph size, alert velocity and live activity, all updating as events land.",
+    lede: "The Graph Explorer renders the full Neo4j entity network in an interactive canvas — accounts, counterparties, devices, logins, and transactions laid out as nodes and edges. Click any node to expand its connections and follow the money or the identity trail as far as the risk goes.",
     bullets: [
-      "Agent-backed metrics, refreshed live",
-      "Fully customizable surface",
-      "Drill from a number straight into the graph",
+      "Account names, linked accounts, and login history in one view",
+      "Transaction traces across hops — who sent what, to whom, and when",
+      "Expandable entity links show how any two parties are connected",
     ],
-    img: "/assets/argus/dashboard.png",
-    alt: "Argus real-time dashboard — open alerts, close time, true-positive rate, alert velocity and live activity",
-    url: "app.sqaid.ai / argus / dashboard",
+    img: "/assets/argus/graph-explorer.png",
+    alt: "Argus graph explorer — interactive Neo4j entity graph showing account relationships, transaction traces and linked identities",
+    url: "app.sqaid.ai / argus / graph-explorer",
     badge: "Live",
   },
   {
@@ -286,13 +286,13 @@ export default function Argus() {
                   <span className={styles.heroDot} />
                   <span className={styles.heroDot} />
                   <span className={styles.heroDot} />
-                  <span className={styles.heroUrl}>app.sqaid.ai / argus / graph-explorer</span>
+                  <span className={styles.heroUrl}>app.sqaid.ai / argus / dashboard</span>
                   <span className={styles.heroBadge}>● Live</span>
                 </div>
                 <img
                   className={styles.heroShot}
-                  src="/assets/argus/graph-explorer.png"
-                  alt="Argus graph explorer — Neo4j entity graph with the AI investigation agent"
+                  src="/assets/argus/dashboard.png"
+                  alt="Argus real-time dashboard — open alerts, close time, true-positive rate and live activity"
                   width={3836}
                   height={1910}
                 />
@@ -408,7 +408,7 @@ export default function Argus() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────── */}
-      <section className="section">
+      <section className="section" style={{ padding: 'var(--space-8) 0' }}>
         <div className="container">
           <Reveal className={styles.cta}>
             <div className={styles.ctaGlow} aria-hidden="true" />
